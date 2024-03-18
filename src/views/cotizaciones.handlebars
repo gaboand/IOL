@@ -1,0 +1,54 @@
+
+<div class="container">
+    <h1 class="title">Cotizaciones de Títulos</h1>
+    <div class="gran-total">
+        <h2>Total Invertido: ${{formatNumero granTotal}}</h2>
+        <h2>Total No Invertido: ${{formatNumero totalNoInvertido}}</h2>
+        <h2>Total Ahorros: ${{formatNumero totalAhorros}}</h2>
+    </div>
+    <div class="cotizaciones">
+        {{#each cotizaciones}}
+        <div class="card">
+            <h2>Cotización: {{simbolo}}</h2>
+            <p class="valorActual"> Precio: {{formatNumero ultimoPrecio}}</p>
+            <p class="variacion">Variación: {{{formatVariacion variacion}}}</p>
+            {{!-- <p>Apertura: {{formatNumero apertura}}</p> --}}
+            <p>Máximo: {{formatNumero maximo}}</p>
+            <p>Mínimo: {{formatNumero minimo}}</p>
+            <p>Monto Operado: {{formatNumeroSinDecimales montoOperado}}</p>
+            <div class="puntas">
+                <h3>Puntas:</h3>
+                <p>Cantidad Compra: {{formatNumero puntas.cantidadCompra}}</p>
+                <p>Precio Compra: {{formatNumero puntas.precioCompra}}</p>
+                <p>Cantidad Venta: {{formatNumero puntas.cantidadVenta}}</p>
+                <p>Precio Venta: {{formatNumero puntas.precioVenta}}</p>
+            </div>
+            <p>Hora: {{formatHora fechaHora}}</p>
+            <p>Cantidad: {{cantidad}}</p>
+            <p>Precio Unitario: ${{formatNumero ultimoPrecio}}</p>
+            <p>Total: ${{formatNumero total}}</p>
+        </div>
+        {{/each}}
+    </div>
+
+        <h1>Comparaciones</h1>
+    <div class="comparaciones">
+        
+        <div class="tipoCambio">
+            <h1>Tipo de cambio implícito</h1>
+            {{#each resultados}}
+            <div>
+                <h2>{{simbolo1}} / {{simbolo2}}: {{resultado}}</h2>
+            </div>
+            {{/each}}
+        </div>
+        <div class="rulos">
+            <h1>Oportunidad de Rulos</h1>
+            {{#each comparaciones}}
+            <div>
+                <h2>Comp {{this.simbolos.[0]}} y {{this.simbolos.[1]}}: {{{formatComparacion this.comparacion}}}</h2>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
