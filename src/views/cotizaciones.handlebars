@@ -4,7 +4,8 @@
     <div class="gran-total">
         <h2>Total Invertido: ${{formatNumero granTotal}}</h2>
         <h2>Total No Invertido: ${{formatNumero totalNoInvertido}}</h2>
-        <h2>Total Ahorros: ${{formatNumero totalAhorros}}</h2>
+        <h2>Total Ahorros - Dólares: ${{formatNumero totalAhorros}}</h2>
+        <h2>Total Ahorros - Pesos: ${{formatNumero totalAhorrosPesos}}</h2>
     </div>
     <div class="cotizaciones">
         {{#each cotizaciones}}
@@ -17,11 +18,11 @@
             <p>Mínimo: {{formatNumero minimo}}</p>
             <p>Monto Operado: {{formatNumeroSinDecimales montoOperado}}</p>
             <div class="puntas">
-                <h3>Puntas:</h3>
+                {{!-- <h3>Puntas:</h3>
                 <p>Cantidad Compra: {{formatNumero puntas.cantidadCompra}}</p>
                 <p>Precio Compra: {{formatNumero puntas.precioCompra}}</p>
                 <p>Cantidad Venta: {{formatNumero puntas.cantidadVenta}}</p>
-                <p>Precio Venta: {{formatNumero puntas.precioVenta}}</p>
+                <p>Precio Venta: {{formatNumero puntas.precioVenta}}</p> --}}
             </div>
             <p>Hora: {{formatHora fechaHora}}</p>
             <p>Cantidad: {{cantidad}}</p>

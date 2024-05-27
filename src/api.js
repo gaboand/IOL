@@ -1,29 +1,9 @@
-import fetch from 'node-fetch'; // Asegúrate de instalar 'node-fetch' con npm
+import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 
 dotenv.config();
 const USERIOL = process.env.USER;
 const PASSIOL = process.env.PASS;
-
-// CANTIDADES
-// const cantAL30 = 0;
-// const cantAL30D = 1000;
-// const cantTX26 = 41783.69;
-// const cantTX28 = 6713.40;
-// const cantTZX26 = 64137.83;
-// const cantDICP = 184.85;
-// const cantTLC10 = 0;
-// const cantTLC1D = 0;
-// const cantYCA60 = 0;
-// const cantYCA6P = 0;
-// const cantNDT25 = 150;
-// const cantNDT5D = 0;
-// const cantBBD = 2032;
-// const cantPAMP = 465;
-// const cantTGS = 500;
-// const cantTESL = 57;
-
-
 
 
 async function obtenerToken() {
@@ -90,7 +70,7 @@ async function obtenerDetalleTitulo(mercado, simbolo) {
 }
 
 async function obtenerCotizacionesInstrumentos(instrumento, pais) {
-    const token = await obtenerToken(); // Asegúrate de tener la función obtenerToken disponible
+    const token = await obtenerToken(); 
     const apiURL = `https://api.invertironline.com/api/v2/Cotizaciones/${instrumento}/${pais}/Todos`;
 
     try {
@@ -159,7 +139,7 @@ async function obtenerCotizacionTituloReducida(mercado, simbolo) {
         }
 
         const data = await response.json();
-        const primeraPunta = data.puntas[0] || {}; // Obtener el primer objeto o un objeto vacío si no existe
+        const primeraPunta = data.puntas[0] || {};
         const datosReducidos = {
 
             ultimoPrecio: data.ultimoPrecio,

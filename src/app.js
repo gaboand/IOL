@@ -45,25 +45,27 @@ app.get("/cotizacion/:mercado/:simbolo", async (req, res) => {
 
         //Cantidad invertida
         const cantidades = {
-            AL30: 2918.78,
+            AL30: 1349.01,
             AL30D: 0,
-            TX26: 6000.00,
-            TX28: 0,
-            TZX26: 34000.00,
-            DICP: 49.94,
+            AL35: 232.73,
+            AL35D: 0,
+            TX26: 9605.72,
+            TX28: 33633.10,
+            TZX26: 100000.00,
+            DICP: 0,
             TLC1O: 0,
             TLC1D: 0,
             YCA6O: 0,
             YCA6P: 0,
             NDT25: 0,
             NDT5D: 0,
-            BBD: 2032,
+            BBD: 700,
             PAMP: 465,
-            TGSU2: 500,
+            TGSU2: 375,
             TSLA: 57,
         };
 
-        const totalNoInvertido = 31375.07; // No invertido
+        const totalNoInvertido = -445.79 // No invertido
 
 
         // Obtener cotizaciones y calcular totales
@@ -86,6 +88,7 @@ app.get("/cotizacion/:mercado/:simbolo", async (req, res) => {
         const granTotal = cotizaciones.reduce((acum, { total }) => acum + Number(total), 0);
         const factorAjuste = (1 - 0.001 * 1.21);
         const granTotalAjustado = granTotal * factorAjuste;
+        
     
                 // Calcular resultados de divisiones
                 const resultadosDivision = [];
@@ -112,8 +115,10 @@ app.get("/cotizacion/:mercado/:simbolo", async (req, res) => {
 
                 let granTotalDolares = resultadoDivision !== 0 ? granTotalAjustado / resultadoDivision : 0;
                 const totalAhorros = granTotalDolares + totalNoInvertido;
+                const totalAhorrosPesos = totalAhorros * (precioAL30 / precioAL30D);
+
         
-                res.render("cotizaciones", { cotizaciones, resultados: resultadosDivision, comparaciones, granTotal: granTotalDolares, totalNoInvertido, totalAhorros  })
+                res.render("cotizaciones", { cotizaciones, resultados: resultadosDivision, comparaciones, granTotal: granTotalDolares, totalNoInvertido, totalAhorros, totalAhorrosPesos  })
 
     } catch (error) {
         res.status(500).send("Error al obtener los datos: " + error.message);
